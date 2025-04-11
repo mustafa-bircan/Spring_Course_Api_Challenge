@@ -1,0 +1,30 @@
+<button onClick="fetchApi()">Send Request</button>
+
+
+function fetchApi() {
+  // Define the URL of the dummy backend API
+  const url = 'http://localhost:8585/workintech/courses';
+
+  // Use the Fetch API to make the request
+  fetch(url, {
+    method: 'GET', // or 'POST' if your API requires a POST request
+    headers: {
+      // Headers if required, e.g., for authentication or content-type
+      'Content-Type': 'application/json',
+      // 'Authorization': 'Bearer your-token-here',
+    },
+    // body: JSON.stringify(data), // if you need to send a payload with a POST request
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json(); // or response.text() if the response is not JSON
+  })
+  .then(data => {
+    console.log(data); // Handling the data from the response
+  })
+  .catch(error => {
+    console.error('Fetch error:', error); // Handling any errors
+  });
+}
