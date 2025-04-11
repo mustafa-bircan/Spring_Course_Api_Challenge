@@ -43,7 +43,7 @@ public class CourseController {
         log.info("Available courses: {}", courses);
 
         Course course = courses.stream()
-                .filter(c -> c.getName().equals(name))
+                .filter(c -> c.getName().equalsIgnoreCase(name))
                 .findFirst()
                 .orElseThrow(() -> {
                     log.error("Course not found with name: {}", name);
